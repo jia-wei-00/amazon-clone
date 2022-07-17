@@ -1,5 +1,7 @@
 import React from "react";
 import "./Checkout.css";
+import Subtotal from "../Subtotal/Subtotal";
+import { connect } from "react-redux";
 
 function Checkout() {
   return (
@@ -15,10 +17,18 @@ function Checkout() {
       </div>
 
       <div className="checkout__right">
-        <h2>The subtotal will go here</h2>
+        <Subtotal />
       </div>
     </div>
   );
 }
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return {
+    basket: state.checkoutState.basket,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

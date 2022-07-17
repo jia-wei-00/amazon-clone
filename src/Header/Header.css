@@ -51,6 +51,11 @@
 }
 
 .header__basketCount {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header__basketCount {
   margin: 0 10px;
 }
 

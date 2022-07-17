@@ -3,8 +3,9 @@ import "./Header.css";
 import SearchIcons from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-function Header() {
+function Header(props) {
   return (
     <div className="header">
       <Link to="/">
@@ -35,7 +36,9 @@ function Header() {
         <Link to="/checkout">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
-            <span className="header__optionLineTwo header__basketCount">0</span>
+            <span className="header__optionLineTwo header__basketCount">
+              {props.basket.length}
+            </span>
           </div>
         </Link>
       </div>
@@ -43,4 +46,12 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    basket: state.checkoutState.basket,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
