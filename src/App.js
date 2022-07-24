@@ -9,7 +9,7 @@ import { auth } from "./firebase";
 import { connect } from "react-redux";
 import { userLogin, userLogout } from "./actions";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes as Switch,
   Route,
 } from "react-router-dom";
