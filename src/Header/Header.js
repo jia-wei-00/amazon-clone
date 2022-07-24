@@ -4,8 +4,15 @@ import SearchIcons from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { auth } from "../firebase";
 
 function Header(props) {
+  const handleAuthentication = () => {
+    if (props.user) {
+      auth.signOut();
+    }
+  };
+
   return (
     <div className="header">
       <Link to="/">
@@ -20,10 +27,14 @@ function Header(props) {
         <SearchIcons className="header__searchIcon" />
       </div>
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__optionLineOne">Hello Guest</span>
-          <span className="header__optionLineTwo">Sign In</span>
-        </div>
+        <Link to={!props.user && "/login"}>
+          <div onClick={handleAuthentication} className="header__option">
+            <span className="header__optionLineOne">Hello Guest</span>
+            <span className="header__optionLineTwo">
+              {props.user ? "Sign Out" : "Sign In"}
+            </span>
+          </div>
+        </Link>
         <div className="header__option">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>
@@ -49,6 +60,7 @@ function Header(props) {
 const mapStateToProps = (state) => {
   return {
     basket: state.checkoutState.basket,
+    user: state.authState.user,
   };
 };
 
