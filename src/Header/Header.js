@@ -29,7 +29,9 @@ function Header(props) {
       <div className="header__nav">
         <Link to={!props.user && "/login"}>
           <div onClick={handleAuthentication} className="header__option">
-            <span className="header__optionLineOne">Hello Guest</span>
+            <span className="header__optionLineOne">
+              {!props.user ? "Guest" : props.user.email}
+            </span>
             <span className="header__optionLineTwo">
               {props.user ? "Sign Out" : "Sign In"}
             </span>
