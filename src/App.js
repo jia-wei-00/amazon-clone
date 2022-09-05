@@ -5,6 +5,7 @@ import Home from "./Home/Home";
 import Checkout from "./Checkout/Checkout";
 import Login from "./Login/Login";
 import Signup from "./Login/Signup";
+import Payment from "./Payment/Payment";
 import { auth } from "./firebase";
 import { connect } from "react-redux";
 import { userLogin, userLogout } from "./actions";
@@ -36,6 +37,7 @@ function App(props) {
           <Route path="/login" element={<Login />} />
           <Route path="*" redirectTo="/" element={<Home />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
         </Switch>
       </div>
     </Router>
