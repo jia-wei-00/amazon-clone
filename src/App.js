@@ -9,7 +9,7 @@ import { auth } from "./firebase";
 import { connect } from "react-redux";
 import { userLogin, userLogout } from "./actions";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes as Switch,
   Route,
 } from "react-router-dom";
@@ -34,7 +34,7 @@ function App(props) {
         <Switch>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
+          <Route path="*" redirectTo="/" element={<Home />} />
           <Route path="/checkout" element={<Checkout />} />
         </Switch>
       </div>
