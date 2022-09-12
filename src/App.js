@@ -9,11 +9,17 @@ import Payment from "./Payment/Payment";
 import { auth } from "./firebase";
 import { connect } from "react-redux";
 import { userLogin, userLogout } from "./actions";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes as Switch,
   Route,
 } from "react-router-dom";
+
+const promise = loadStripe(
+  "pk_test_51LeuwyCaFXx8q5KvvAKa48RxQ33O6gWOMx9o34dhCvJzmYaKqAqqQ6wWBVQ8Gn0Tnt87AJIRXbGNmhRM7yA96wSf00hwHATlD5"
+);
 
 function App(props) {
   useEffect(() => {
@@ -37,7 +43,14 @@ function App(props) {
           <Route path="/login" element={<Login />} />
           <Route path="*" redirectTo="/" element={<Home />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route
+            path="/payment"
+            element={
+              <Elements stripe={promise}>
+                <Payment />
+              </Elements>
+            }
+          />
         </Switch>
       </div>
     </Router>
